@@ -1,0 +1,2 @@
+deleteMarker "MainMarker";
+deletemarker "markertext";
