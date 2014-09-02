@@ -100,6 +100,7 @@ progressLoadingScreen 0.4;
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\randomloot.sqf";
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\randommilbases.sqf";
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";				//Compile regular functions
+call compile preprocessFileLineNumbers "custom\compiles.sqf";				//Compile regular functions
 progressLoadingScreen 0.5;
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\server_traders.sqf";				//Compile trader configs
 progressLoadingScreen 1.0;
@@ -144,6 +145,11 @@ if ( !((getPlayerUID player) in AdminList) && !((getPlayerUID player) in ModList
     [] execVM "\z\addons\dayz_code\system\antihack.sqf";
 };
 };
+	
+//trade from vehicle and backpack inventory
+ExecVM "custom\TradeFromVehicle\init.sqf"
+
+
 /*SET BULLET WIND CONDITIONS*/
 waitUntil {(!isNull player)};
 	script = [] execVM "\z\addons\dayz_code\ACE\bwind.sqf";
