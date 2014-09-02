@@ -110,7 +110,7 @@ TraderDialogLoadItemList = {
 
 		// Action file to use for trade
 		_afile = _x select 7;
-		_File = "custom\traders_skipAn\trade\" + _afile + ".sqf";
+		_File = "\z\addons\dayz_code\actions\" + _afile + ".sqf";
 			
 		_count = 0;
 		if(_type == "CfgVehicles") then {
@@ -142,6 +142,11 @@ TraderDialogLoadItemList = {
 			_count = {_x == _name} count weapons player;
 		};
 
+		private ["_mname","_mlen","_magtype"];
+		_mname = getnumber (configFile >> _type >> _name >> "ace_suppressed");
+		_aname = gettext (configfile >> _type >> _name >> "DisplayNameShort");
+		if (_mname == 1) then {_magtype = "SD";} else {_magtype = "";};
+		if (_aname == "SD") then {_magtype = "";};
 		_index = lbAdd [TraderDialogItemList, format["%1 (%2)", _textPart, _name]];
 
 		if (_count > 0) then {
@@ -149,6 +154,7 @@ TraderDialogLoadItemList = {
 		};
 
 		_image = getText(configFile >> _type >> _name >> "picture");
+		if (_image == "") then {_image = "\CA\weapons\data\equip\m_pk_ca.paa"};
 		lbSetPicture [TraderDialogItemList, _index, _image];
 
 		_item_list set [count _item_list, [
